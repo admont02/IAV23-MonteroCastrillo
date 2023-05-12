@@ -23,7 +23,11 @@ public class PlayerController : MonoBehaviour
             agent.Move(moveDirection * Time.deltaTime * agent.speed);
             playerTransform.rotation = Quaternion.LookRotation(moveDirection);
         }
-
+        if (Input.GetKeyDown(KeyCode.E))
+            InteraccionConClientes();
+    }
+    private void InteraccionConClientes()
+    {
         for (int i = 0; i < listaClientes.transform.childCount; i++)
         {
             Transform hijo = listaClientes.transform.GetChild(i);
@@ -33,8 +37,9 @@ public class PlayerController : MonoBehaviour
             if (distancia <= 2.0f && hijo.GetComponent<Cliente>().esperando)
             {
                 Debug.Log("El hijo " + i + " está cerca del objeto actual.");
+                hijo.GetComponent<Cliente>().setAtencion();
             }
-           
+
         }
     }
 }

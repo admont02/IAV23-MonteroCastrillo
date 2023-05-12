@@ -47,7 +47,7 @@ public class Cliente : MonoBehaviour
     public GameBlackboard bb;
 
     //para seguir al fantasma o al vizconde
-    public GameObject fantasma;
+    public GameObject icono;
 
     public void Awake()
     {
@@ -221,6 +221,7 @@ public class Cliente : MonoBehaviour
     {
         esperando = false;
         esperandoBebida = true;
+        icono.SetActive(true);
     }
 
 }
