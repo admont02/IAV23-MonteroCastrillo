@@ -2313,6 +2313,38 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1081207887}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &386598733
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 386598734}
+  m_Layer: 0
+  m_Name: ListaClientes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &386598734
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386598733}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.12, y: 0.508, z: 28.264}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1457766229}
+  m_Father: {fileID: 0}
+  m_RootOrder: 126
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &412820368
 GameObject:
   m_ObjectHideFlags: 0
@@ -5409,6 +5441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5c408a5bcf610a4498b79efc13ba0cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  listaClientes: {fileID: 386598733}
 --- !u!1001 &897263904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9541,14 +9574,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1457766221}
-  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 5.12, y: 0.508, z: 28.264}
+  m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 280470797}
-  m_Father: {fileID: 0}
-  m_RootOrder: 126
+  m_Father: {fileID: 386598734}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &1457766230
 MonoBehaviour:
@@ -9563,15 +9596,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiempoDeCanto: 0
-  tiempoDeDescanso: 5
+  tiempoDeDescanso: 10
   capturada: 0
   anguloVistaHorizontal: 0
   distanciaVista: 0
   objetivo: {fileID: 0}
-  tiempoDeMerodeo: 0
-  tiempoComienzoMerodeo: 0
+  tiempoDeEsperaBebida: 0
+  tiempoComienzoEsperarBebida: 0
   distanciaDeMerodeo: 16
-  cantando: 0
+  esperando: 0
+  esperandoBebida: 0
   Puerta: {fileID: 2011077922}
   Barra: {fileID: 1061444519}
   bb: {fileID: 0}

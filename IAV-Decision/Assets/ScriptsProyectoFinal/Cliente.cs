@@ -25,13 +25,14 @@ public class Cliente : MonoBehaviour
     public Transform objetivo;
 
     // Segundos que puede estar merodeando
-    public double tiempoDeMerodeo;
+    public double tiempoDeEsperaBebida;
     // Segundo en el que comezo a merodear
-    public double tiempoComienzoMerodeo = 0;
+    public double tiempoComienzoEsperarBebida = 0;
     // Distancia de merodeo
     public int distanciaDeMerodeo = 16;
     // Si canta o no
-    public bool cantando = false;
+    public bool esperando = false;
+    public bool esperandoBebida = false;
 
 
 
@@ -85,7 +86,7 @@ public class Cliente : MonoBehaviour
         }
 
         tiempoComienzoCanto = 0;
-        cantando = true;
+        esperando = true;
         
         Debug.Log("Hola!Estoy cantando!");
     }
@@ -106,7 +107,7 @@ public class Cliente : MonoBehaviour
     {
         agente.SetDestination(Barra.position);
         tiempoComienzoDescanso = 0;
-        cantando = false;
+        esperando = true;
     }
 
     // Comprueba si tiene que dejar de descansar
@@ -117,7 +118,7 @@ public class Cliente : MonoBehaviour
 
         if ((1 << NavMesh.GetAreaFromName("Barra") & hit.mask) != 0)
             tiempoComienzoDescanso += Time.time;
-        Debug.Log(tiempoComienzoDescanso);
+       
         return tiempoComienzoDescanso >= tiempoDeDescanso;
     }
 
@@ -191,10 +192,10 @@ public class Cliente : MonoBehaviour
         //Vector3 d = transform.position - agente.destination;
         //if (d.magnitude <= agente.stoppingDistance)
         //{
-        tiempoComienzoMerodeo += Time.deltaTime;
-        if (tiempoComienzoMerodeo >= tiempoDeMerodeo)
+        tiempoComienzoEsperarBebida += Time.deltaTime;
+        if (tiempoComienzoEsperarBebida >= tiempoDeEsperaBebida)
         {
-            tiempoComienzoMerodeo = 0;
+            tiempoComienzoEsperarBebida = 0;
             agente.SetDestination(RandomNavSphere(distanciaDeMerodeo));
         }
         //}
@@ -207,7 +208,7 @@ public class Cliente : MonoBehaviour
     public void setCapturada(bool cap)
     {
         capturada = cap;
-        cantando = false;
+        esperando = false;
     }
 
     public GameObject sigueFantasma()
@@ -216,12 +217,10 @@ public class Cliente : MonoBehaviour
         return null;
     }
 
-    public void sigueVizconde()
+   public void setAtencion()
     {
-        agente.SetDestination(objetivo.position);
-
-        if (Vector3.SqrMagnitude(transform.position - objetivo.position) < 1.2f)
-            agente.SetDestination(transform.position);
+        esperando = false;
+        esperandoBebida = true;
     }
 
 }

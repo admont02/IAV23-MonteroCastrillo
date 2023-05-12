@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     NavMeshAgent agent;
     Transform playerTransform;
+    [SerializeField]
+    GameObject listaClientes;
 
     void Start()
     {
@@ -20,6 +22,19 @@ public class PlayerController : MonoBehaviour
         {
             agent.Move(moveDirection * Time.deltaTime * agent.speed);
             playerTransform.rotation = Quaternion.LookRotation(moveDirection);
+        }
+
+        for (int i = 0; i < listaClientes.transform.childCount; i++)
+        {
+            Transform hijo = listaClientes.transform.GetChild(i);
+            float distancia = Vector3.Distance(transform.position, hijo.position);
+
+            // Comprobar si la distancia es menor que una cierta cantidad
+            if (distancia <= 2.0f && hijo.GetComponent<Cliente>().esperando)
+            {
+                Debug.Log("El hijo " + i + " está cerca del objeto actual.");
+            }
+           
         }
     }
 }
