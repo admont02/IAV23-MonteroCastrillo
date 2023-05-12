@@ -39,7 +39,7 @@ public class Cliente : MonoBehaviour
     private NavMeshAgent agente;
 
     // Objetivos de su itinerario
-    public Transform Escenario;
+    public Transform Puerta;
     public Transform Barra;
 
     // La blackboard
@@ -116,8 +116,8 @@ public class Cliente : MonoBehaviour
         NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas);
 
         if ((1 << NavMesh.GetAreaFromName("Barra") & hit.mask) != 0)
-            tiempoComienzoDescanso += Time.deltaTime;
-
+            tiempoComienzoDescanso += Time.time;
+        Debug.Log(tiempoComienzoDescanso);
         return tiempoComienzoDescanso >= tiempoDeDescanso;
     }
 
