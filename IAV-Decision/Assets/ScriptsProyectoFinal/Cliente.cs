@@ -49,16 +49,24 @@ public class Cliente : MonoBehaviour
     //para seguir al fantasma o al vizconde
     public GameObject icono;
 
+    //sprites 
+
+    public Sprite[] sprites;
     public void Awake()
     {
         agente = GetComponent<NavMeshAgent>();
         Debug.Log(Barra.position.x);
         Debug.Log(Barra.position.y);
         Debug.Log(Barra.position.z);
+        int randomIndex = Random.Range(0, sprites.Length);
+        transform.GetChild(1).GetComponent<SpriteRenderer>().sprite =sprites[randomIndex];
         //objetivo = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         //fantasma = GameObject.FindGameObjectWithTag("Ghost");
     }
+    private void BebidaDeseada()
+    {
 
+    }
     public void Start()
     {
         //agente.updateRotation = false;
