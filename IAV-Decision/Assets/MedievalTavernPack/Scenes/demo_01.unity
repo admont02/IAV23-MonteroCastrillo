@@ -2539,13 +2539,13 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 598364e1a17999e49b57e656167be33b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.129
   m_Pitch: 1
   Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 108
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -9708,9 +9708,6 @@ MonoBehaviour:
   Barra: {fileID: 1061444519}
   bb: {fileID: 0}
   icono: {fileID: 93157205}
-  beerSp: {fileID: 21300000, guid: 09b4faf65c2a6b648832f2bfb6d4e4f5, type: 3}
-  wineSp: {fileID: 21300000, guid: d1f0e6cf3e363ec42991d40f0b8f2e82, type: 3}
-  whiskeySp: {fileID: 21300000, guid: c1449ff5f4396a246af2b597d7b5e227, type: 3}
   sprites:
   - {fileID: 21300000, guid: 09b4faf65c2a6b648832f2bfb6d4e4f5, type: 3}
   - {fileID: 21300000, guid: d1f0e6cf3e363ec42991d40f0b8f2e82, type: 3}
