@@ -7,6 +7,9 @@ public class PlayerController : MonoBehaviour
     Transform playerTransform;
     [SerializeField]
     GameObject listaClientes;
+    [SerializeField]
+    MesasManager mM;
+
 
     void Start()
     {
@@ -25,6 +28,9 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.E))
             InteraccionConClientes();
+
+        if (Input.GetKeyDown(KeyCode.F))
+            MandarClienteAMesa();
     }
     private void InteraccionConClientes()
     {
@@ -41,5 +47,24 @@ public class PlayerController : MonoBehaviour
             }
 
         }
+    }
+    private void MandarClienteAMesa()
+    {
+        for (int i = 0; i < listaClientes.transform.childCount; i++)
+        {
+            Transform hijo = listaClientes.transform.GetChild(i);
+            float distancia = Vector3.Distance(transform.position, hijo.position);
+
+            // Comprobar si la distancia es menor que una cierta cantidad
+            if (distancia <= 2.0f && hijo.GetComponent<Cliente>().esperandoBebida)
+            {
+                if (mM.hayMesaVacia())
+                {
+                    hijo.GetComponent<Cliente>().MandarAMesa(mM.getMesaVacia());
+                }
+            }
+
+        }
+       
     }
 }

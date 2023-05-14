@@ -33,6 +33,8 @@ public class Cliente : MonoBehaviour
     // Si canta o no
     public bool esperando = false;
     public bool esperandoBebida = false;
+    public bool enMesa = false;
+
 
 
 
@@ -59,7 +61,7 @@ public class Cliente : MonoBehaviour
         Debug.Log(Barra.position.y);
         Debug.Log(Barra.position.z);
         int randomIndex = Random.Range(0, sprites.Length);
-        transform.GetChild(1).GetComponent<SpriteRenderer>().sprite =sprites[randomIndex];
+        transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sprites[randomIndex];
         //objetivo = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         //fantasma = GameObject.FindGameObjectWithTag("Ghost");
     }
@@ -95,7 +97,7 @@ public class Cliente : MonoBehaviour
 
         tiempoComienzoCanto = 0;
         esperando = true;
-        
+
         Debug.Log("Hola!Estoy cantando!");
     }
 
@@ -126,32 +128,11 @@ public class Cliente : MonoBehaviour
 
         if ((1 << NavMesh.GetAreaFromName("Barra") & hit.mask) != 0)
             tiempoComienzoDescanso += Time.time;
-       
+
         return tiempoComienzoDescanso >= tiempoDeDescanso;
     }
 
-    // Comprueba si se encuentra en la celda
-    public bool EstaEnCelda()
-    {
-        NavMeshHit hit;
-        NavMesh.SamplePosition(agente.transform.position, out hit, 2f, NavMesh.AllAreas);
-        return (1 << NavMesh.GetAreaFromName("Celda") & hit.mask) != 0;
 
-    }
-
-    // Comprueba si esta en un sitio desde el cual sabe llegar al escenario
-    public bool ConozcoEsteSitio()
-    {
-        NavMeshHit hit;
-        NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas);
-
-        return (1 << NavMesh.GetAreaFromName("Escenario") & hit.mask) != 0 ||
-               (1 << NavMesh.GetAreaFromName("Bambalinas") & hit.mask) != 0 ||
-               (1 << NavMesh.GetAreaFromName("Palco Oeste") & hit.mask) != 0 ||
-               (1 << NavMesh.GetAreaFromName("Palco Este") & hit.mask) != 0 ||
-               (1 << NavMesh.GetAreaFromName("Butacas") & hit.mask) != 0 ||
-               (1 << NavMesh.GetAreaFromName("Pasillos Escenario") & hit.mask) != 0;
-    }
 
     //Mira si ve al vizconde con un angulo de vision y una distancia maxima
     public bool Scan()
@@ -225,11 +206,17 @@ public class Cliente : MonoBehaviour
         return null;
     }
 
-   public void setAtencion()
+    public void setAtencion()
     {
         esperando = false;
         esperandoBebida = true;
         icono.SetActive(true);
     }
-
+    public void MandarAMesa(Vector3 dest)
+    {
+        Debug.Log("MandarAMesa metodo");
+        esperandoBebida = false;
+        enMesa = true;
+        agente.SetDestination(dest);
+    }
 }
