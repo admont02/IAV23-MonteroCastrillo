@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using static UnityEngine.GraphicsBuffer;
 
 public class Cliente : MonoBehaviour
 {
@@ -78,7 +79,7 @@ public class Cliente : MonoBehaviour
 
     public void LateUpdate()
     {
-        if (agente.velocity.sqrMagnitude > Mathf.Epsilon)
+        if (agente.velocity.sqrMagnitude > Mathf.Epsilon && !enMesa)
             transform.rotation = Quaternion.LookRotation(agente.velocity.normalized);
     }
 
@@ -218,5 +219,7 @@ public class Cliente : MonoBehaviour
         esperandoBebida = false;
         enMesa = true;
         agente.SetDestination(dest);
+        //  transform.forward = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z);
+        //transform.rotation = Quaternion.Euler(0, -90, 0);
     }
 }

@@ -26,7 +26,9 @@ public class MesasManager : MonoBehaviour
             Transform hijo = transform.GetChild(i);
             if (hijo.GetComponent<Mesa>().libre)
             {
-                posi = hijo.position;
+                posi.x = hijo.position.x+1;
+                posi.y = hijo.position.y;
+                posi.z = hijo.position.z;
 
             }
 
