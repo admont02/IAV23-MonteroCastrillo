@@ -60,7 +60,13 @@ public class PlayerController : MonoBehaviour
             {
                 if (mM.hayMesaVacia())
                 {
-                    hijo.GetComponent<Cliente>().MandarAMesa(mM.getMesaVacia());
+                    Mesa mesa = mM.GetMesaVacia();
+                    Vector3 posi;
+                    posi.x = mesa.transform.position.x + 1;
+                    posi.y = mesa.transform.position.y;
+                    posi.z = mesa.transform.position.z;
+                    hijo.GetComponent<Cliente>().miMesa = mesa;
+                    hijo.GetComponent<Cliente>().MandarAMesa(posi);
                 }
             }
 

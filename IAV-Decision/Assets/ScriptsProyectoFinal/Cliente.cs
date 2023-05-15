@@ -35,6 +35,7 @@ public class Cliente : MonoBehaviour
     public bool esperando = false;
     public bool esperandoBebida = false;
     public bool enMesa = false;
+    public Mesa miMesa=null;
 
 
 

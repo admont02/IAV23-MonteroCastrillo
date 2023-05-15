@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tiempoDeCanto: 0
-  tiempoDeDescanso: 10
+  tiempoDeDescanso: 30
   capturada: 0
   anguloVistaHorizontal: 0
   distanciaVista: 0
@@ -167,6 +167,7 @@ MonoBehaviour:
   esperando: 0
   esperandoBebida: 0
   enMesa: 0
+  miMesa: {fileID: 0}
   Puerta: {fileID: 6449544910757699809, guid: 85eee53f10729144ebc95cdcbd621140, type: 3}
   Barra: {fileID: 3071293828171001318, guid: e41300ba1b4c45e4b8acc9e3016aa7b9, type: 3}
   bb: {fileID: 0}
