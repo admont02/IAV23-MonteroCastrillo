@@ -11,6 +11,7 @@ TagManager:
   - Puerta
   - Cantante
   - Vestibulo
+  - Barra
   layers:
   - Default
   - TransparentFX

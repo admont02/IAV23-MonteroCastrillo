@@ -20,18 +20,34 @@ public class MesasManager : MonoBehaviour
     public Vector3 getMesaVacia()
     {
 
-        Vector3 posi=new Vector3();
-        for (int i = 0; i < transform.childCount; i++)
+        //Vector3 posi=new Vector3();
+        //for (int i = 0; i < transform.childCount; i++)
+        //{
+        //    Transform hijo = transform.GetChild(i);
+        //    if (hijo.GetComponent<Mesa>().libre)
+        //    {
+        //        posi.x = hijo.position.x+1;
+        //        posi.y = hijo.position.y;
+        //        posi.z = hijo.position.z;
+        //        hijo.GetComponent<Mesa>().libre = false;
+        //    }
+
+        //}
+        //return posi;
+        Vector3 posi = new Vector3();
+        int i = 0;
+        while (i < transform.childCount)
         {
             Transform hijo = transform.GetChild(i);
             if (hijo.GetComponent<Mesa>().libre)
             {
-                posi.x = hijo.position.x+1;
+                posi.x = hijo.position.x + 1;
                 posi.y = hijo.position.y;
                 posi.z = hijo.position.z;
-
+                hijo.GetComponent<Mesa>().libre = false;
+                break; // Salir del bucle while cuando se encuentra una mesa libre
             }
-
+            i++;
         }
         return posi;
     }

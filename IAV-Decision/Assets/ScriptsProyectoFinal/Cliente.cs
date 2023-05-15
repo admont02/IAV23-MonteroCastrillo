@@ -45,6 +45,7 @@ public class Cliente : MonoBehaviour
     // Objetivos de su itinerario
     public Transform Puerta;
     public Transform Barra;
+    private GameObject barraGO;
 
     // La blackboard
     public GameBlackboard bb;
@@ -57,6 +58,8 @@ public class Cliente : MonoBehaviour
     public Sprite[] sprites;
     public void Awake()
     {
+        barraGO = GameObject.FindWithTag("Barra");
+        Barra = barraGO.transform;
         agente = GetComponent<NavMeshAgent>();
         Debug.Log(Barra.position.x);
         Debug.Log(Barra.position.y);
