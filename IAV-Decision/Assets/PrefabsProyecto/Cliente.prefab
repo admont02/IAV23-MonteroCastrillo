@@ -155,12 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34509b80be4a084095f1ef42fe55d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoDeCanto: 0
   tiempoDeDescanso: 30
-  capturada: 0
-  anguloVistaHorizontal: 0
-  distanciaVista: 0
-  objetivo: {fileID: 0}
   tiempoDeEsperaBebida: 0
   tiempoComienzoEsperarBebida: 0
   distanciaDeMerodeo: 16
@@ -168,6 +163,7 @@ MonoBehaviour:
   esperandoBebida: 0
   enMesa: 0
   miMesa: {fileID: 0}
+  tiempoDeConsumo: 7
   Puerta: {fileID: 6449544910757699809, guid: 85eee53f10729144ebc95cdcbd621140, type: 3}
   Barra: {fileID: 3071293828171001318, guid: e41300ba1b4c45e4b8acc9e3016aa7b9, type: 3}
   bb: {fileID: 0}

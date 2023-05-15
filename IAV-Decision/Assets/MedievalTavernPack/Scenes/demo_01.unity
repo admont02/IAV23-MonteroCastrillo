@@ -8537,6 +8537,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1509199077284618, guid: f690e5c1212c4aa45950ed64cbe48316, type: 3}
+      propertyPath: m_TagString
+      value: Puerta
+      objectReference: {fileID: 0}
     - target: {fileID: 4411039910446238, guid: f690e5c1212c4aa45950ed64cbe48316, type: 3}
       propertyPath: m_RootOrder
       value: 29

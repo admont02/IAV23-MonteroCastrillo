@@ -6,24 +6,13 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Cliente : MonoBehaviour
 {
-    // Segundos que estara cantando
-    public double tiempoDeCanto;
-    // Segundo en el que comezo a cantar
-    private double tiempoComienzoCanto;
+
     // Segundos que esta descanasando
     public double tiempoDeDescanso;
     // Segundo en el que comezo a descansar
     private double tiempoComienzoDescanso;
     // Si esta capturada
-    public bool capturada = false;
 
-    [Range(0, 180)]
-    // Angulo de vision en horizontal
-    public double anguloVistaHorizontal;
-    // Distancia maxima de vision
-    public double distanciaVista;
-    // Objetivo al que ver"
-    public Transform objetivo;
 
     // Segundos que puede estar merodeando
     public double tiempoDeEsperaBebida;
@@ -35,7 +24,10 @@ public class Cliente : MonoBehaviour
     public bool esperando = false;
     public bool esperandoBebida = false;
     public bool enMesa = false;
-    public Mesa miMesa=null;
+    public Mesa miMesa = null;
+    public double tiempoDeConsumo;
+    // Segundo en el que comezo a descansar
+    private double tiempoComienzoConsumo = 0;
 
 
 
@@ -47,6 +39,8 @@ public class Cliente : MonoBehaviour
     public Transform Puerta;
     public Transform Barra;
     private GameObject barraGO;
+    private GameObject puertaGO;
+
 
     // La blackboard
     public GameBlackboard bb;
@@ -60,7 +54,10 @@ public class Cliente : MonoBehaviour
     public void Awake()
     {
         barraGO = GameObject.FindWithTag("Barra");
+        puertaGO = GameObject.FindWithTag("Puerta");
+
         Barra = barraGO.transform;
+        Puerta = puertaGO.transform;
         agente = GetComponent<NavMeshAgent>();
         Debug.Log(Barra.position.x);
         Debug.Log(Barra.position.y);
@@ -88,34 +85,8 @@ public class Cliente : MonoBehaviour
     }
 
     // Comienza a cantar, reseteando el temporizador
-    public void Cantar()
-    {
-        NavMeshHit hit;
-        NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas);
 
-        bool enEscenario = (1 << NavMesh.GetAreaFromName("Barra") & hit.mask) != 0;
 
-        if (!enEscenario)
-        {
-            agente.SetDestination(Barra.position);
-        }
-
-        tiempoComienzoCanto = 0;
-        esperando = true;
-
-        Debug.Log("Hola!Estoy cantando!");
-    }
-
-    // Comprueba si tiene que dejar de cantar
-    public bool TerminaCantar()
-    {
-        NavMeshHit hit;
-        NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas);
-        if ((1 << NavMesh.GetAreaFromName("Escenario") & hit.mask) != 0)
-            tiempoComienzoCanto += Time.deltaTime;
-
-        return tiempoComienzoCanto >= tiempoDeCanto;
-    }
 
     // Comienza a descansar, reseteando el temporizador
     public void IrABarra()
@@ -138,19 +109,30 @@ public class Cliente : MonoBehaviour
     }
 
 
+    public bool TerminaConsumir()
+    {
+
+        if (enMesa)
+        {
+            if (tiempoComienzoConsumo == 0f) // Si es la primera vez que se llama a la función
+            {
+                tiempoComienzoConsumo = Time.time; // Guardar el tiempo de inicio del consumo
+            }
+
+            double tiempoTranscurrido = Time.time - tiempoComienzoConsumo; // Calcular el tiempo transcurrido
+
+            if (tiempoTranscurrido >= tiempoDeConsumo) // Si ha transcurrido el tiempo objetivo
+            {
+                tiempoComienzoConsumo = 0f; // Reiniciar el tiempo de inicio del consumo para futuras llamadas
+                return true;
+            }
+        }
+
+        return false; // Si no se cumple la condición, devuelve false
+    }
 
     //Mira si ve al vizconde con un angulo de vision y una distancia maxima
-    public bool Scan()
-    {
-        Vector3 p = transform.position;
-        double angulo = Vector3.Angle(transform.forward, objetivo.position - p);
-        RaycastHit hit;
 
-        if (angulo < anguloVistaHorizontal && Vector3.Magnitude(p - objetivo.position) <= distanciaVista)
-            return Physics.Raycast(p, objetivo.position - p, out hit, Mathf.Infinity) && hit.collider.gameObject.GetComponent<Player>();
-
-        return false;
-    }
 
     // Genera una posicion aleatoria a cierta distancia dentro de las areas permitidas
     private Vector3 RandomNavSphere(float distance)
@@ -181,35 +163,9 @@ public class Cliente : MonoBehaviour
     }
 
     // Genera un nuevo punto de merodeo cada vez que agota su tiempo de merodeo actual
-    public void IntentaMerodear()
-    {
-        //Vector3 d = transform.position - agente.destination;
-        //if (d.magnitude <= agente.stoppingDistance)
-        //{
-        tiempoComienzoEsperarBebida += Time.deltaTime;
-        if (tiempoComienzoEsperarBebida >= tiempoDeEsperaBebida)
-        {
-            tiempoComienzoEsperarBebida = 0;
-            agente.SetDestination(RandomNavSphere(distanciaDeMerodeo));
-        }
-        //}
-    }
-    public bool GetCapturada()
-    {
-        return capturada;
-    }
 
-    public void setCapturada(bool cap)
-    {
-        capturada = cap;
-        esperando = false;
-    }
 
-    public GameObject sigueFantasma()
-    {
-        // ?
-        return null;
-    }
+
 
     public void setAtencion()
     {
@@ -223,6 +179,7 @@ public class Cliente : MonoBehaviour
         esperandoBebida = false;
         enMesa = true;
         agente.SetDestination(dest);
+        tiempoComienzoConsumo = 0;
         //  transform.forward = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z);
         //transform.rotation = Quaternion.Euler(0, -90, 0);
     }
