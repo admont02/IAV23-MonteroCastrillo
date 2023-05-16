@@ -124,6 +124,7 @@ public class Cliente : MonoBehaviour
             if (tiempoTranscurrido >= tiempoDeConsumo) // Si ha transcurrido el tiempo objetivo
             {
                 tiempoComienzoConsumo = 0f; // Reiniciar el tiempo de inicio del consumo para futuras llamadas
+                miMesa.libre = true;
                 return true;
             }
         }
