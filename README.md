@@ -1,6 +1,6 @@
 # La CafeterIA
 
-Este proyecto final para la asignatura Inteligencia Artificial para Videojuegos (IAV) ha sido realizado por ADRIÄN MONTERO CASTRILLO, realizado en Unity 3D.
+Este proyecto final para la asignatura Inteligencia Artificial para Videojuegos (IAV) ha sido realizado por ADRIÁN MONTERO CASTRILLO, realizado en Unity 3D.
 
 Mi proyecto presenta un emocionante bar virtual en el que tú, como jugador, asumes el papel de camarero y atiendes a una variedad de clientes virtuales. La IA que impulsa a estos clientes está construida utilizando máquinas de estado de Bolt.
 
