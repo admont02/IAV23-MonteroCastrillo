@@ -4312,6 +4312,9 @@ MonoBehaviour:
   PosCerveza: {fileID: 423492491}
   PosVino: {fileID: 1971193037}
   PosWhiskey: {fileID: 240339739}
+  PrefabCerveza: {fileID: 1034451668}
+  PrefabVino: {fileID: 1265123572}
+  PrefabWhiskey: {fileID: 1573554750913364}
 --- !u!1001 &897263904
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5221,6 +5224,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4721780193091316, guid: efdb3ed10ba9c6b418a492aa30ba0edd,
     type: 3}
   m_PrefabInstance: {fileID: 1520534751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1034451668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1670697701759372, guid: 41c2416439f912f4e89bd6b1167f45e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 728644952}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1043768659
 PrefabInstance:
@@ -6462,6 +6471,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: efdb3ed10ba9c6b418a492aa30ba0edd, type: 3}
+--- !u!1 &1265123572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1573554358890940, guid: 639d8009f73c0c0479e83997d1fc2ec2,
+    type: 3}
+  m_PrefabInstance: {fileID: 182347877}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1265660991
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10587,7 +10602,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2056022450}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0.4}
+  m_LocalPosition: {x: -0, y: 0.5, z: 0.57}
   m_LocalScale: {x: 0.6833132, y: 0.24081093, z: 0.34543762}
   m_ConstrainProportionsScale: 0
   m_Children: []

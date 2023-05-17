@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class PlayerController : MonoBehaviour
 {
@@ -15,6 +16,16 @@ public class PlayerController : MonoBehaviour
     GameObject PosVino;
     [SerializeField]
     GameObject PosWhiskey;
+
+    //prefabs
+    [SerializeField]
+    GameObject PrefabCerveza;
+    [SerializeField]
+    GameObject PrefabVino;
+    [SerializeField]
+    GameObject PrefabWhiskey;
+
+    bool bebidaEnMano = false;
 
 
     void Start()
@@ -89,24 +100,40 @@ public class PlayerController : MonoBehaviour
 
     private void CogerBebidaDeEstanteria()
     {
+        if (bebidaEnMano) return;
         float distCerve = Vector3.Distance(transform.position, PosCerveza.transform.position);
         float distVino = Vector3.Distance(transform.position, PosVino.transform.position);
         float distWhiskey = Vector3.Distance(transform.position, PosWhiskey.transform.position);
 
-
+        Vector3 posi;
+        posi.x = -0.5f;
+        posi.y = 0.1f;
+        posi.z = 0.7f;
 
         // Comprobar si la distancia es menor que una cierta cantidad
         if (distCerve <= 1.5f)
         {
             Debug.Log("Estantería cerveza");
+            GameObject cerveza = Instantiate(PrefabCerveza, transform.position, transform.rotation);
+            cerveza.transform.SetParent(transform);
+            cerveza.transform.localPosition= posi;
+            bebidaEnMano = true;
         }
         else if (distVino <= 1.5f)
         {
             Debug.Log("Estantería Vino ");
+            GameObject vino = Instantiate(PrefabVino, posi, transform.rotation);
+            vino.transform.SetParent(transform);
+            vino.transform.localPosition = posi;
+            bebidaEnMano = true;
         }
         else if (distWhiskey <= 1.5f)
         {
             Debug.Log("Estantería Whiskey");
+            GameObject whiskey = Instantiate(PrefabWhiskey, posi, transform.rotation);
+            whiskey.transform.SetParent(transform);
+            whiskey.transform.localPosition = posi;
+            bebidaEnMano = true;
         }
     }
 }

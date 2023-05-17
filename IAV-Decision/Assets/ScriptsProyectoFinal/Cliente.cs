@@ -59,15 +59,16 @@ public class Cliente : MonoBehaviour
         Barra = barraGO.transform;
         Puerta = puertaGO.transform;
         agente = GetComponent<NavMeshAgent>();
-       
-        int randomIndex = Random.Range(0, sprites.Length);
-        transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sprites[randomIndex];
+
+        BebidaDeseada();
         //objetivo = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         //fantasma = GameObject.FindGameObjectWithTag("Ghost");
     }
     private void BebidaDeseada()
     {
 
+        int randomIndex = Random.Range(0, sprites.Length);
+        transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sprites[randomIndex];
     }
     public void Start()
     {
@@ -81,18 +82,10 @@ public class Cliente : MonoBehaviour
         if (agente.velocity.sqrMagnitude > Mathf.Epsilon && !enMesa)
             transform.rotation = Quaternion.LookRotation(agente.velocity.normalized);
 
-        //if (!agente.pathPending && agente.remainingDistance <= agente.stoppingDistance)
-        //{
-        //    // Si hemos llegado, desactivamos el NavMeshAgent
-        //    agente.isStopped = true;
-        //}
+        
     }
 
-    // Comienza a cantar, reseteando el temporizador
-
-
-
-    // Comienza a descansar, reseteando el temporizador
+  
     public void IrABarra()
     {
         agente.SetDestination(Barra.position);
@@ -109,7 +102,7 @@ public class Cliente : MonoBehaviour
             if ((1 << hit.mask & NavMesh.GetAreaFromName("Barra")) != 0)
             {
                 double tiempoTranscurrido = Time.time - tiempoComienzoDescanso;
-               
+
                 return tiempoTranscurrido >= tiempoDeDescanso;
             }
         }
@@ -143,8 +136,7 @@ public class Cliente : MonoBehaviour
         return false; // Si no se cumple la condición, devuelve false
     }
 
-    //Mira si ve al vizconde con un angulo de vision y una distancia maxima
-
+ 
 
     // Genera una posicion aleatoria a cierta distancia dentro de las areas permitidas
     private Vector3 RandomNavSphere(float distance)
