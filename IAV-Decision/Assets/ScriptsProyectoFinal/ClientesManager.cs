@@ -8,16 +8,18 @@ public class ClientesManager : MonoBehaviour
     GameObject clientePrefab;
     [SerializeField]
     Transform listaClientes;
-    public float intervaloCreacion = 45f;
+    public float intervaloCreacion = 450f;
     private float temporizador = 0f;
     private int maxCli=8;
 
     void Update()
     {
         temporizador += Time.deltaTime;
-       // Debug.Log(temporizador);
+        //Debug.Log(temporizador);
+        // Debug.Log(temporizador);
         if (temporizador >= intervaloCreacion && listaClientes.childCount<maxCli)
         {
+           
             CrearCliente();
             temporizador = 0f;
         }

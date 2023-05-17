@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("El hijo " + i + " está cerca del objeto actual.");
                 hijo.GetComponent<Cliente>().setAtencion();
+                break;
             }
 
         }
@@ -67,6 +68,7 @@ public class PlayerController : MonoBehaviour
                     posi.z = mesa.transform.position.z;
                     hijo.GetComponent<Cliente>().miMesa = mesa;
                     hijo.GetComponent<Cliente>().MandarAMesa(posi);
+                    break;
                 }
             }
 

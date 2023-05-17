@@ -48,7 +48,7 @@ MonoBehaviour:
   clientePrefab: {fileID: 900542403738461617, guid: d8af970fc420a4842b9ae583da583847,
     type: 3}
   listaClientes: {fileID: 4540269865579624937}
-  intervaloCreacion: 5
+  intervaloCreacion: 8
 --- !u!1001 &3710150156199519323
 PrefabInstance:
   m_ObjectHideFlags: 0
