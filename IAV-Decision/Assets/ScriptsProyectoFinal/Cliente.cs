@@ -74,7 +74,7 @@ public class Cliente : MonoBehaviour
     public void Start()
     {
         //agente.updateRotation = false;
-
+        agente.stoppingDistance = .25f;
 
     }
 
@@ -82,6 +82,12 @@ public class Cliente : MonoBehaviour
     {
         if (agente.velocity.sqrMagnitude > Mathf.Epsilon && !enMesa)
             transform.rotation = Quaternion.LookRotation(agente.velocity.normalized);
+
+        //if (!agente.pathPending && agente.remainingDistance <= agente.stoppingDistance)
+        //{
+        //    // Si hemos llegado, desactivamos el NavMeshAgent
+        //    agente.isStopped = true;
+        //}
     }
 
     // Comienza a cantar, reseteando el temporizador

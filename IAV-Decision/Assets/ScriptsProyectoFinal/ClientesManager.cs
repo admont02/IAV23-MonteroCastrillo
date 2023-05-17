@@ -10,12 +10,13 @@ public class ClientesManager : MonoBehaviour
     Transform listaClientes;
     public float intervaloCreacion = 5f;
     private float temporizador = 0f;
+    private int maxCli=8;
 
     void Update()
     {
         temporizador += Time.deltaTime;
        // Debug.Log(temporizador);
-        if (temporizador >= intervaloCreacion)
+        if (temporizador >= intervaloCreacion && listaClientes.childCount<maxCli)
         {
             CrearCliente();
             temporizador = 0f;
