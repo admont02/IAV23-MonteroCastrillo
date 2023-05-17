@@ -9,6 +9,12 @@ public class PlayerController : MonoBehaviour
     GameObject listaClientes;
     [SerializeField]
     MesasManager mM;
+    [SerializeField]
+    GameObject PosCerveza;
+    [SerializeField]
+    GameObject PosVino;
+    [SerializeField]
+    GameObject PosWhiskey;
 
 
     void Start()
@@ -27,7 +33,11 @@ public class PlayerController : MonoBehaviour
             playerTransform.rotation = Quaternion.LookRotation(moveDirection);
         }
         if (Input.GetKeyDown(KeyCode.E))
+        {
             InteraccionConClientes();
+            CogerBebidaDeEstanteria();
+
+        }
 
         if (Input.GetKeyDown(KeyCode.F))
             MandarClienteAMesa();
@@ -73,6 +83,30 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-       
+
+    }
+
+
+    private void CogerBebidaDeEstanteria()
+    {
+        float distCerve = Vector3.Distance(transform.position, PosCerveza.transform.position);
+        float distVino = Vector3.Distance(transform.position, PosVino.transform.position);
+        float distWhiskey = Vector3.Distance(transform.position, PosWhiskey.transform.position);
+
+
+
+        // Comprobar si la distancia es menor que una cierta cantidad
+        if (distCerve <= 1.5f)
+        {
+            Debug.Log("Estantería cerveza");
+        }
+        else if (distVino <= 1.5f)
+        {
+            Debug.Log("Estantería Vino ");
+        }
+        else if (distWhiskey <= 1.5f)
+        {
+            Debug.Log("Estantería Whiskey");
+        }
     }
 }
