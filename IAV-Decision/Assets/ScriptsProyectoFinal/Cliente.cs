@@ -59,9 +59,7 @@ public class Cliente : MonoBehaviour
         Barra = barraGO.transform;
         Puerta = puertaGO.transform;
         agente = GetComponent<NavMeshAgent>();
-        Debug.Log(Barra.position.x);
-        Debug.Log(Barra.position.y);
-        Debug.Log(Barra.position.z);
+       
         int randomIndex = Random.Range(0, sprites.Length);
         transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sprites[randomIndex];
         //objetivo = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -98,7 +96,7 @@ public class Cliente : MonoBehaviour
     public void IrABarra()
     {
         agente.SetDestination(Barra.position);
-        tiempoComienzoDescanso = 0;
+        tiempoComienzoDescanso = Time.time;
         esperando = true;
     }
 
@@ -106,13 +104,20 @@ public class Cliente : MonoBehaviour
     public bool TerminaEsperarEnBarra()
     {
         NavMeshHit hit;
-        NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas);
+        if (NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas))
+        {
+            if ((1 << hit.mask & NavMesh.GetAreaFromName("Barra")) != 0)
+            {
+                double tiempoTranscurrido = Time.time - tiempoComienzoDescanso;
+               
+                return tiempoTranscurrido >= tiempoDeDescanso;
+            }
+        }
 
-        if ((1 << NavMesh.GetAreaFromName("Barra") & hit.mask) != 0)
-            tiempoComienzoDescanso += Time.time;
-
-        return tiempoComienzoDescanso >= tiempoDeDescanso;
+        // Si no se cumple la condición, se retorna false
+        return false;
     }
+
 
 
     public bool TerminaConsumir()

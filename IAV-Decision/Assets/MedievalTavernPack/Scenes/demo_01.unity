@@ -12776,6 +12776,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ListaClientes
       objectReference: {fileID: 0}
+    - target: {fileID: 4540269866675864042, guid: 15c6c53456957ed44ae6385d1cf05646,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4540269866675864049, guid: 15c6c53456957ed44ae6385d1cf05646,
         type: 3}
       propertyPath: Barra

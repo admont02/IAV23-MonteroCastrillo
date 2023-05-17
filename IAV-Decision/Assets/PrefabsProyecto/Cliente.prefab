@@ -155,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34509b80be4a084095f1ef42fe55d4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempoDeDescanso: 30
+  tiempoDeDescanso: 7
   tiempoDeEsperaBebida: 0
   tiempoComienzoEsperarBebida: 0
   distanciaDeMerodeo: 16

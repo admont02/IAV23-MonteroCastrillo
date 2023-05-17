@@ -8,7 +8,7 @@ public class ClientesManager : MonoBehaviour
     GameObject clientePrefab;
     [SerializeField]
     Transform listaClientes;
-    public float intervaloCreacion = 5f;
+    public float intervaloCreacion = 45f;
     private float temporizador = 0f;
     private int maxCli=8;
 
