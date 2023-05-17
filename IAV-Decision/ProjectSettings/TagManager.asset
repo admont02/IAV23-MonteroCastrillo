@@ -12,6 +12,9 @@ TagManager:
   - Cantante
   - Vestibulo
   - Barra
+  - Cerveza
+  - Vino
+  - Whiskey
   layers:
   - Default
   - TransparentFX
