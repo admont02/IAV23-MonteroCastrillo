@@ -14,6 +14,6 @@ public class AnimsJug : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        animator.Play("andar");
+        animator.Play("idle");
     }
 }
