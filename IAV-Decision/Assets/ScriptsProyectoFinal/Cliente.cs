@@ -133,7 +133,7 @@ public class Cliente : MonoBehaviour
                     enfadandoseProgramado = true;
                 }
                 //return tiempoTranscurrido >= tiempoDeDescanso;
-                
+
                 return nivelAlegria <= 30;
             }
         }
@@ -145,7 +145,7 @@ public class Cliente : MonoBehaviour
     {
         Debug.Log("cheee");
         nivelAlegria -= 5;
-        enfadandoseProgramado=false;
+        enfadandoseProgramado = false;
     }
 
 
@@ -171,7 +171,17 @@ public class Cliente : MonoBehaviour
 
         return false; // Si no se cumple la condición, devuelve false
     }
+    public bool MeMarcho()
+    {
+        if (51 >= nivelAlegria) 
+        { 
+            miMesa.libre = true;
+            return true;
+        }
 
+
+        return false;
+    }
 
     public void setAtencion()
     {
@@ -203,7 +213,7 @@ public class Cliente : MonoBehaviour
         else
         {
             nivelAlegria -= 50;
-            Debug.Log("nooooooooooooooooooooo  "+nivelAlegria);
+            Debug.Log("nooooooooooooooooooooo  " + nivelAlegria);
             audioS.PlayOneShot(incorrecto);
 
 
