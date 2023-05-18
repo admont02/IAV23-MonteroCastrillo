@@ -28,11 +28,12 @@ public class PlayerController : MonoBehaviour
     bool bebidaEnMano = false;
 
     Cliente.Bebidas b;
-
+    private Animator animator;
     private GameObject bebidaObjeto;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
         playerTransform = transform;
     }
 
@@ -44,7 +45,9 @@ public class PlayerController : MonoBehaviour
         {
             agent.Move(moveDirection * Time.deltaTime * agent.speed);
             playerTransform.rotation = Quaternion.LookRotation(moveDirection);
+            animator.Play("andar");
         }
+        else animator.Play("idle");
         if (Input.GetKeyDown(KeyCode.E))
         {
             InteraccionConClientes();
@@ -114,8 +117,8 @@ public class PlayerController : MonoBehaviour
 
         Vector3 posi;
         posi.x = -0.5f;
-        posi.y = 0.1f;
-        posi.z = 0.7f;
+        posi.y = 1.71f;
+        posi.z = 0.318f;
 
         // Comprobar si la distancia es menor que una cierta cantidad
         if (distCerve <= 1.5f)

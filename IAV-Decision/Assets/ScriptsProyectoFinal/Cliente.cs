@@ -130,7 +130,7 @@ public class Cliente : MonoBehaviour
                 //double tiempoTranscurrido = Time.time - tiempoComienzoDescanso;
                 if (!enfadandoseProgramado)
                 {
-                    Invoke("Enfadandose", 1f);
+                    Invoke("Enfadandose", 2f);
                     enfadandoseProgramado = true;
                 }
                 //return tiempoTranscurrido >= tiempoDeDescanso;
@@ -235,7 +235,7 @@ public class Cliente : MonoBehaviour
         enMesa = true;
         agente.SetDestination(dest);
         tiempoComienzoConsumo = 0;
-        //  transform.forward = new Vector3(Camera.main.transform.forward.x, 0, Camera.main.transform.forward.z);
-        //transform.rotation = Quaternion.Euler(0, -90, 0);
+       
+
     }
 }
