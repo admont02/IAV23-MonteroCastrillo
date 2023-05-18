@@ -94,10 +94,10 @@ public class Cliente : MonoBehaviour
         if (agente.velocity.sqrMagnitude > Mathf.Epsilon && !enMesa)
             transform.rotation = Quaternion.LookRotation(agente.velocity.normalized);
 
-        
+
     }
 
-  
+
     public void IrABarra()
     {
         agente.SetDestination(Barra.position);
@@ -148,14 +148,22 @@ public class Cliente : MonoBehaviour
         return false; // Si no se cumple la condición, devuelve false
     }
 
- 
+
     public void setAtencion()
     {
         esperando = false;
         esperandoBebida = true;
         icono.SetActive(true);
+
+        Invoke("DesactivarIcono", 3f);
     }
-    public void MandarAMesa(Vector3 dest,Bebidas entregada, GameObject vaso)
+
+    private void DesactivarIcono()
+    {
+        icono.SetActive(false);
+    }
+
+    public void MandarAMesa(Vector3 dest, Bebidas entregada, GameObject vaso)
     {
         if (bebida == entregada)
         {
