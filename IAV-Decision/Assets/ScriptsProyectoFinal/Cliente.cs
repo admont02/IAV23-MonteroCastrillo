@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks.Sources;
 using UnityEngine;
 using UnityEngine.AI;
 using static UnityEngine.GraphicsBuffer;
@@ -64,7 +65,7 @@ public class Cliente : MonoBehaviour
     [SerializeField]
     AudioClip incorrecto;
 
-
+    private GameObject vaso;
 
     public enum Bebidas
     {
@@ -164,7 +165,14 @@ public class Cliente : MonoBehaviour
             if (tiempoTranscurrido >= tiempoDeConsumo) // Si ha transcurrido el tiempo objetivo
             {
                 tiempoComienzoConsumo = 0f; // Reiniciar el tiempo de inicio del consumo para futuras llamadas
+                vaso.transform.SetParent(miMesa.transform);
+                Vector3 posi;
+                posi.x = 0f;
+                posi.y = 0.72f;
+                posi.z = 0f;
+                vaso.transform.localPosition = posi;
                 miMesa.libre = true;
+                
                 return true;
             }
         }
@@ -175,6 +183,7 @@ public class Cliente : MonoBehaviour
     {
         if (51 >= nivelAlegria) 
         { 
+            
             miMesa.libre = true;
             return true;
         }
@@ -197,7 +206,7 @@ public class Cliente : MonoBehaviour
         icono.SetActive(false);
     }
 
-    public void MandarAMesa(Vector3 dest, Bebidas entregada, GameObject vaso)
+    public void MandarAMesa(Vector3 dest, Bebidas entregada, GameObject mivaso)
     {
         Vector3 posi;
         posi.x = -0.5f;
@@ -218,6 +227,7 @@ public class Cliente : MonoBehaviour
 
 
         }
+        vaso = mivaso;
         vaso.transform.SetParent(transform);
         vaso.transform.localPosition = posi;
         Debug.Log("MandarAMesa metodo");
