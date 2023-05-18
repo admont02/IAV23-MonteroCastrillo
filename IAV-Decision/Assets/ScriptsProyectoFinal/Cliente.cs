@@ -44,8 +44,7 @@ public class Cliente : MonoBehaviour
     private GameObject puertaGO;
 
 
-    // La blackboard
-    public GameBlackboard bb;
+  
 
     //para seguir al fantasma o al vizconde
     public GameObject icono;
