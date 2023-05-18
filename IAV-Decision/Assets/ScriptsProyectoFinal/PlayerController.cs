@@ -136,6 +136,8 @@ public class PlayerController : MonoBehaviour
             bebidaObjeto = Instantiate(PrefabVino, posi, transform.rotation);
             bebidaObjeto.transform.SetParent(transform);
             bebidaObjeto.transform.localPosition = posi;
+            bebidaObjeto.transform.rotation = Quaternion.Euler(-90f, bebidaObjeto.transform.rotation.eulerAngles.y, bebidaObjeto.transform.rotation.eulerAngles.z);
+
             b = Cliente.Bebidas.VINO;
             bebidaEnMano = true;
         }
