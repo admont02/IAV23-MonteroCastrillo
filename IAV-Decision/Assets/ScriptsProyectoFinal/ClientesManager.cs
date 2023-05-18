@@ -34,4 +34,8 @@ public class ClientesManager : MonoBehaviour
         // Asignar propiedades aleatorias al cliente
        // cliente.GetComponent<Cliente>().AsignarPropiedadesAleatorias();
     }
+    //public int GetClientesBarra()
+    //{
+    //    int cont = 0;
+    //}
 }

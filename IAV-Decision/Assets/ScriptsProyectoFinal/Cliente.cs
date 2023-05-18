@@ -53,6 +53,8 @@ public class Cliente : MonoBehaviour
 
     public Sprite[] sprites;
 
+    public int nivelAlegria;
+
     public enum Bebidas
     {
         CERVEZA,
@@ -68,10 +70,9 @@ public class Cliente : MonoBehaviour
         Barra = barraGO.transform;
         Puerta = puertaGO.transform;
         agente = GetComponent<NavMeshAgent>();
-
+        nivelAlegria = 100;
         BebidaDeseada();
-        //objetivo = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        //fantasma = GameObject.FindGameObjectWithTag("Ghost");
+
     }
     private void BebidaDeseada()
     {
@@ -165,21 +166,24 @@ public class Cliente : MonoBehaviour
 
     public void MandarAMesa(Vector3 dest, Bebidas entregada, GameObject vaso)
     {
+        Vector3 posi;
+        posi.x = -0.5f;
+        posi.y = 0.1f;
+        posi.z = 0.7f;
         if (bebida == entregada)
         {
-            Vector3 posi;
-            posi.x = -0.5f;
-            posi.y = 0.1f;
-            posi.z = 0.7f;
+            nivelAlegria += 15;
             Debug.Log("LO QUE QUERIA");
-            vaso.transform.SetParent(transform);
-            vaso.transform.localPosition = posi;
+
         }
         else
         {
-            Debug.Log("nooooooooooooooooooooo");
+            nivelAlegria -= 50;
+            Debug.Log("nooooooooooooooooooooo  "+nivelAlegria);
 
         }
+        vaso.transform.SetParent(transform);
+        vaso.transform.localPosition = posi;
         Debug.Log("MandarAMesa metodo");
         esperandoBebida = false;
         enMesa = true;
