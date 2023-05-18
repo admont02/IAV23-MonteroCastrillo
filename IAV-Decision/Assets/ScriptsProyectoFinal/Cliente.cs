@@ -55,6 +55,17 @@ public class Cliente : MonoBehaviour
 
     public int nivelAlegria;
 
+    private bool enfadandoseProgramado = false;
+
+    private AudioSource audioS;
+
+    [SerializeField]
+    AudioClip correcto;
+    [SerializeField]
+    AudioClip incorrecto;
+
+
+
     public enum Bebidas
     {
         CERVEZA,
@@ -64,6 +75,7 @@ public class Cliente : MonoBehaviour
     Bebidas bebida;
     public void Awake()
     {
+        audioS = GetComponent<AudioSource>();
         barraGO = GameObject.FindWithTag("Barra");
         puertaGO = GameObject.FindWithTag("Puerta");
 
@@ -114,16 +126,27 @@ public class Cliente : MonoBehaviour
         {
             if ((1 << hit.mask & NavMesh.GetAreaFromName("Barra")) != 0)
             {
-                double tiempoTranscurrido = Time.time - tiempoComienzoDescanso;
-
-                return tiempoTranscurrido >= tiempoDeDescanso;
+                //double tiempoTranscurrido = Time.time - tiempoComienzoDescanso;
+                if (!enfadandoseProgramado)
+                {
+                    Invoke("Enfadandose", 1f);
+                    enfadandoseProgramado = true;
+                }
+                //return tiempoTranscurrido >= tiempoDeDescanso;
+                
+                return nivelAlegria <= 30;
             }
         }
 
         // Si no se cumple la condición, se retorna false
         return false;
     }
-
+    public void Enfadandose()
+    {
+        Debug.Log("cheee");
+        nivelAlegria -= 5;
+        enfadandoseProgramado=false;
+    }
 
 
     public bool TerminaConsumir()
@@ -174,12 +197,15 @@ public class Cliente : MonoBehaviour
         {
             nivelAlegria += 15;
             Debug.Log("LO QUE QUERIA");
+            audioS.PlayOneShot(correcto);
 
         }
         else
         {
             nivelAlegria -= 50;
             Debug.Log("nooooooooooooooooooooo  "+nivelAlegria);
+            audioS.PlayOneShot(incorrecto);
+
 
         }
         vaso.transform.SetParent(transform);
