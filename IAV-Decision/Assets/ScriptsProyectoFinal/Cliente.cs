@@ -149,51 +149,23 @@ public class Cliente : MonoBehaviour
     }
 
  
-
-    // Genera una posicion aleatoria a cierta distancia dentro de las areas permitidas
-    private Vector3 RandomNavSphere(float distance)
-    {
-        Vector3 dir = UnityEngine.Random.insideUnitSphere * distance;
-        dir += transform.position;
-        NavMeshHit hit;
-        do
-        {
-            dir = UnityEngine.Random.insideUnitSphere * distance;
-            dir += transform.position;
-            NavMesh.SamplePosition(dir, out hit, distance, NavMesh.AllAreas);
-        }
-        while ((1 << NavMesh.GetAreaFromName("Escenario") & hit.mask) == 0 &&
-            (1 << NavMesh.GetAreaFromName("Palco Este") & hit.mask) == 0 &&
-            (1 << NavMesh.GetAreaFromName("Palco Oeste") & hit.mask) == 0 &&
-            (1 << NavMesh.GetAreaFromName("Butacas") & hit.mask) == 0 &&
-            (1 << NavMesh.GetAreaFromName("Vestíbulo") & hit.mask) == 0 &&
-            (1 << NavMesh.GetAreaFromName("Bambalinas") & hit.mask) == 0 &&
-            (1 << NavMesh.GetAreaFromName("Sótano Este") & hit.mask) == 0 &&
-            (1 << NavMesh.GetAreaFromName("Sótano Oeste") & hit.mask) == 0 &&
-            (1 << NavMesh.GetAreaFromName("Celda") & hit.mask) == 0 &&
-            (1 << NavMesh.GetAreaFromName("Sótano Norte") & hit.mask) == 0 &&
-            (1 << NavMesh.GetAreaFromName("Música") & hit.mask) == 0 &&
-            (1 << NavMesh.GetAreaFromName("Pasillos Escenario") & hit.mask) == 0);
-
-        return hit.position;
-    }
-
-    // Genera un nuevo punto de merodeo cada vez que agota su tiempo de merodeo actual
-
-
-
-
     public void setAtencion()
     {
         esperando = false;
         esperandoBebida = true;
         icono.SetActive(true);
     }
-    public void MandarAMesa(Vector3 dest,Bebidas entregada)
+    public void MandarAMesa(Vector3 dest,Bebidas entregada, GameObject vaso)
     {
         if (bebida == entregada)
         {
+            Vector3 posi;
+            posi.x = -0.5f;
+            posi.y = 0.1f;
+            posi.z = 0.7f;
             Debug.Log("LO QUE QUERIA");
+            vaso.transform.SetParent(transform);
+            vaso.transform.localPosition = posi;
         }
         else
         {

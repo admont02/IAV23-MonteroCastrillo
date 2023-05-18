@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     bool bebidaEnMano = false;
 
     Cliente.Bebidas b;
+
+    private GameObject bebidaObjeto;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -90,7 +92,7 @@ public class PlayerController : MonoBehaviour
                     posi.y = mesa.transform.position.y;
                     posi.z = mesa.transform.position.z;
                     hijo.GetComponent<Cliente>().miMesa = mesa;
-                    hijo.GetComponent<Cliente>().MandarAMesa(posi,b);
+                    hijo.GetComponent<Cliente>().MandarAMesa(posi, b,bebidaObjeto);
                     break;
                 }
             }
@@ -116,27 +118,27 @@ public class PlayerController : MonoBehaviour
         if (distCerve <= 1.5f)
         {
             Debug.Log("Estantería cerveza");
-            GameObject cerveza = Instantiate(PrefabCerveza, transform.position, transform.rotation);
-            cerveza.transform.SetParent(transform);
-            cerveza.transform.localPosition= posi;
-            b=Cliente.Bebidas.CERVEZA;
+            bebidaObjeto = Instantiate(PrefabCerveza, transform.position, transform.rotation);
+            bebidaObjeto.transform.SetParent(transform);
+            bebidaObjeto.transform.localPosition = posi;
+            b = Cliente.Bebidas.CERVEZA;
             bebidaEnMano = true;
         }
         else if (distVino <= 1.5f)
         {
             Debug.Log("Estantería Vino ");
-            GameObject vino = Instantiate(PrefabVino, posi, transform.rotation);
-            vino.transform.SetParent(transform);
-            vino.transform.localPosition = posi;
+            bebidaObjeto = Instantiate(PrefabVino, posi, transform.rotation);
+            bebidaObjeto.transform.SetParent(transform);
+            bebidaObjeto.transform.localPosition = posi;
             b = Cliente.Bebidas.VINO;
             bebidaEnMano = true;
         }
         else if (distWhiskey <= 1.5f)
         {
             Debug.Log("Estantería Whiskey");
-            GameObject whiskey = Instantiate(PrefabWhiskey, posi, transform.rotation);
-            whiskey.transform.SetParent(transform);
-            whiskey.transform.localPosition = posi;
+            bebidaObjeto = Instantiate(PrefabWhiskey, posi, transform.rotation);
+            bebidaObjeto.transform.SetParent(transform);
+            bebidaObjeto.transform.localPosition = posi;
             b = Cliente.Bebidas.WHISKEY;
             bebidaEnMano = true;
         }
