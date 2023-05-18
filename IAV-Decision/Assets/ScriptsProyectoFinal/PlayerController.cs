@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
                     posi.z = mesa.transform.position.z;
                     hijo.GetComponent<Cliente>().miMesa = mesa;
                     hijo.GetComponent<Cliente>().MandarAMesa(posi, b,bebidaObjeto);
+                    bebidaEnMano = false;
                     break;
                 }
             }
