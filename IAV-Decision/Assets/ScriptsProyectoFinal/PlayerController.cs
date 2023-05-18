@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     bool bebidaEnMano = false;
 
-
+    Cliente.Bebidas b;
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour
     }
     private void MandarClienteAMesa()
     {
+        if (!bebidaEnMano) return;
+
         for (int i = 0; i < listaClientes.transform.childCount; i++)
         {
             Transform hijo = listaClientes.transform.GetChild(i);
@@ -88,7 +90,7 @@ public class PlayerController : MonoBehaviour
                     posi.y = mesa.transform.position.y;
                     posi.z = mesa.transform.position.z;
                     hijo.GetComponent<Cliente>().miMesa = mesa;
-                    hijo.GetComponent<Cliente>().MandarAMesa(posi);
+                    hijo.GetComponent<Cliente>().MandarAMesa(posi,b);
                     break;
                 }
             }
@@ -117,6 +119,7 @@ public class PlayerController : MonoBehaviour
             GameObject cerveza = Instantiate(PrefabCerveza, transform.position, transform.rotation);
             cerveza.transform.SetParent(transform);
             cerveza.transform.localPosition= posi;
+            b=Cliente.Bebidas.CERVEZA;
             bebidaEnMano = true;
         }
         else if (distVino <= 1.5f)
@@ -125,6 +128,7 @@ public class PlayerController : MonoBehaviour
             GameObject vino = Instantiate(PrefabVino, posi, transform.rotation);
             vino.transform.SetParent(transform);
             vino.transform.localPosition = posi;
+            b = Cliente.Bebidas.VINO;
             bebidaEnMano = true;
         }
         else if (distWhiskey <= 1.5f)
@@ -133,6 +137,7 @@ public class PlayerController : MonoBehaviour
             GameObject whiskey = Instantiate(PrefabWhiskey, posi, transform.rotation);
             whiskey.transform.SetParent(transform);
             whiskey.transform.localPosition = posi;
+            b = Cliente.Bebidas.WHISKEY;
             bebidaEnMano = true;
         }
     }

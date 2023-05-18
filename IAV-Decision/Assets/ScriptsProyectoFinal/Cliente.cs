@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -51,6 +52,14 @@ public class Cliente : MonoBehaviour
     //sprites 
 
     public Sprite[] sprites;
+
+    public enum Bebidas
+    {
+        CERVEZA,
+        VINO,
+        WHISKEY
+    }
+    Bebidas bebida;
     public void Awake()
     {
         barraGO = GameObject.FindWithTag("Barra");
@@ -67,8 +76,11 @@ public class Cliente : MonoBehaviour
     private void BebidaDeseada()
     {
 
-        int randomIndex = Random.Range(0, sprites.Length);
+        int randomIndex = UnityEngine.Random.Range(0, sprites.Length);
         transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = sprites[randomIndex];
+
+        bebida = (Bebidas)Enum.Parse(typeof(Bebidas), randomIndex.ToString());
+
     }
     public void Start()
     {
@@ -177,8 +189,17 @@ public class Cliente : MonoBehaviour
         esperandoBebida = true;
         icono.SetActive(true);
     }
-    public void MandarAMesa(Vector3 dest)
+    public void MandarAMesa(Vector3 dest,Bebidas entregada)
     {
+        if (bebida == entregada)
+        {
+            Debug.Log("LO QUE QUERIA");
+        }
+        else
+        {
+            Debug.Log("nooooooooooooooooooooo");
+
+        }
         Debug.Log("MandarAMesa metodo");
         esperandoBebida = false;
         enMesa = true;
