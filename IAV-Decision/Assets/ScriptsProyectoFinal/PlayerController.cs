@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
             float distancia = Vector3.Distance(transform.position, mesa.position);
 
             // Comprobar si la distancia es menor que una cierta cantidad
-            if (distancia <= 1.0f && mesa.GetComponent<Mesa>().IsSucia())
+            if (distancia <= 1.5f && mesa.GetComponent<Mesa>().IsSucia())
             {
                 for (int j = 0; j < mesa.transform.childCount; j++)
                 {
@@ -95,59 +95,74 @@ public class PlayerController : MonoBehaviour
 
     private void InteraccionConClientes()
     {
+        Transform clienteMasCercano = null;
+        float distanciaMinima = float.MaxValue;
+
         for (int i = 0; i < listaClientes.transform.childCount; i++)
         {
             Transform hijo = listaClientes.transform.GetChild(i);
             float distancia = Vector3.Distance(transform.position, hijo.position);
 
-            // Comprobar si la distancia es menor que una cierta cantidad
-            if (distancia <= 2.0f && hijo.GetComponent<Cliente>().esperando)
+            // Comprobar si la distancia es menor que una cierta cantidad y menor a la distancia mínima actual
+            if (distancia <= 2.0f && distancia < distanciaMinima && hijo.GetComponent<Cliente>().esperando)
             {
-                Debug.Log("El hijo " + i + " está cerca del objeto actual.");
-                hijo.GetComponent<Cliente>().setAtencion();
-                break;
+                clienteMasCercano = hijo;
+                distanciaMinima = distancia;
             }
+        }
 
-
+        if (clienteMasCercano != null)
+        {
+            Debug.Log("Interactuando con el cliente más cercano.");
+            clienteMasCercano.GetComponent<Cliente>().setAtencion();
         }
     }
+
     private void MandarClienteAMesa()
     {
         if (!bebidaEnMano) return;
 
+        Transform clienteMasCercano = null;
+        float distanciaMinima = float.MaxValue;
+        Vector3 posi = new Vector3(0, 0, 0);
+
         for (int i = 0; i < listaClientes.transform.childCount; i++)
         {
             Transform hijo = listaClientes.transform.GetChild(i);
             float distancia = Vector3.Distance(transform.position, hijo.position);
 
-            // Comprobar si la distancia es menor que una cierta cantidad
-            if (distancia <= 2.0f && hijo.GetComponent<Cliente>().esperandoBebida)
+            // Comprobar si la distancia es menor que la distancia mínima actual y si el cliente está esperando la bebida
+            if (distancia <= 2.0f && distancia < distanciaMinima && hijo.GetComponent<Cliente>().esperandoBebida)
             {
-                Vector3 posi = new Vector3(0,0,0);
-                if (mM.hayMesaVacia())
-                {
-
-                    Mesa mesa = mM.GetMesaVacia();
-
-                    posi.x = mesa.transform.position.x + 1;
-                    posi.y = mesa.transform.position.y;
-                    posi.z = mesa.transform.position.z;
-                    hijo.GetComponent<Cliente>().miMesa = mesa;
-                    hijo.GetComponent<Cliente>().MandarAMesa(posi, b, bebidaObjeto, true);
-                    bebidaEnMano = false;
-                    break;
-                }
-                else
-                {
-                    hijo.GetComponent<Cliente>().MandarAMesa(posi, b, bebidaObjeto, false);
-                    bebidaEnMano = false;
-                    break;
-                }
+                clienteMasCercano = hijo;
+                distanciaMinima = distancia;
             }
-
         }
 
+        if (clienteMasCercano != null)
+        {
+            Debug.Log("Interactuando con el cliente más cercano.");
+
+            if (mM.hayMesaVacia())
+            {
+                Mesa mesa = mM.GetMesaVacia();
+
+                posi.x = mesa.transform.position.x + 1;
+                posi.y = mesa.transform.position.y;
+                posi.z = mesa.transform.position.z;
+
+                clienteMasCercano.GetComponent<Cliente>().miMesa = mesa;
+                clienteMasCercano.GetComponent<Cliente>().MandarAMesa(posi, b, bebidaObjeto, true);
+                bebidaEnMano = false;
+            }
+            else
+            {
+                clienteMasCercano.GetComponent<Cliente>().MandarAMesa(posi, b, bebidaObjeto, false);
+                bebidaEnMano = false;
+            }
+        }
     }
+
 
 
     private void CogerBebidaDeEstanteria()
