@@ -19,6 +19,31 @@ Características principales:
  
  ## Diseño de la solución
  
+ En el proyecto dispongo de las siguientes clases:
+
+- PlayerController: Clase para el manejo del jugador (camarero), se moverá mediante NavMesh con las teclas ‘W’, ‘A’, S,D y podrá interactuar con los clientes/objetos con la tecla ‘E’
+
+- Cliente:
+
+- ClientesManager:
+
+- Mesa: 
+
+- Mesas Manager:
+
+
+
+Los clientes funcionan mediante una máquina de estados, según la cual intercalan ir a la barra a pedir su bebida, esperar su bebida, ir a mesa y consumir su bebida. Aquí adjunto una imagen de la máquina implementada en el proyecto
+
+Cada x segundos, irá entrando un nuevo cliente en el bar, siempre y cuando no se supere el máximo de clientela permitida (7). Lo primero que hará el cliente, lógicamente, será ir a la barra a pedir su bebida, a menos que haya demasiada gente esperando en la barra, entonces, el cliente se pondrá a bailar, una vez haya sitio para pedir, retomará la acción. 
+
+Una vez en la barra, el cliente se irá impacientando, hasta el punto de que, si está demasiado esperando a ser atendido , se marchará.
+
+Una vez atendido, cada cliente deseará una bebida aleatoria entre cerveza, vino y whiskey. Cuando el camarero interactúe por primera vez con el cliente en la barra, aparecerá durante 3 segundos un icono en su cabeza que nos indicará lo que desea tomar. Será labor del camarero recordar que bebida desea cada cliente para tenerle satisfecho, tendrá que ir a la estantería correspondiente, coger la bebida y dársela al cliente, sin demorarse mucho para que no se moleste. 
+
+Cuando le demos su bebida, el cliente irá a una mesa vacía a consumirla tranquilamente, si no quedan mesas libres, se quedará en la barra tomándola. Si por casualidad el cliente se encuentra una mesa sucia, se enfadara aún más, por lo que también es labor del camarero encargarse de que todo esté limpio para que no haya molestias añadidas.
+
+Una vez termine su tiempo de consumición , el cliente abandonará el local, dependiendo de su nivel de satisfacción al abandonar, reuniremos más dinero o menos.
  
  ## Pruebas y métricas
  
