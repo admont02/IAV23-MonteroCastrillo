@@ -42,7 +42,7 @@ public class ClientesManager : MonoBehaviour
         for(int i = 0; i < listaClientes.childCount; i++)
         {
             Transform hijo = transform.GetChild(i);
-            if (hijo.GetComponent<Cliente>().esperando)
+            if (hijo.GetComponent<Cliente>().esperando || hijo.GetComponent<Cliente>().esperandoBebida)
                 cont++;
         }
         return cont;

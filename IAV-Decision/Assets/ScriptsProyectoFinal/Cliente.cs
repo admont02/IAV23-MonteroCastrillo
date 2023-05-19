@@ -136,7 +136,11 @@ public class Cliente : MonoBehaviour
                 }
                 //return tiempoTranscurrido >= tiempoDeDescanso;
 
-                return nivelAlegria <= 30;
+               if( nivelAlegria <= 30)
+                {
+                    esperando = false;
+                    return true;
+                }
             }
         }
 
@@ -192,7 +196,8 @@ public class Cliente : MonoBehaviour
     {
         if (51 >= nivelAlegria)
         {
-
+            esperando=false;
+            esperandoBebida=false;
             miMesa.libre = true;
             return true;
         }
