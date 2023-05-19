@@ -43,7 +43,7 @@ Una vez atendido, cada cliente deseará una bebida aleatoria entre cerveza, vino
 
 Cuando le demos su bebida, el cliente irá a una mesa vacía a consumirla tranquilamente, si no quedan mesas libres, se quedará en la barra tomándola. Si por casualidad el cliente se encuentra una mesa sucia, se enfadara aún más, por lo que también es labor del camarero encargarse de que todo esté limpio para que no haya molestias añadidas.
 
-Una vez termine su tiempo de consumición , el cliente abandonará el local, dependiendo de su nivel de satisfacción al abandonar, reuniremos más dinero o menos.
+Una vez termine su tiempo de consumición , el cliente abandonará el local.
  
  ## Pruebas y métricas
  
