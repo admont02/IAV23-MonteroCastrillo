@@ -256,4 +256,8 @@ public class Cliente : MonoBehaviour
         }
 
     }
+    public bool HuecoBarra()
+    {
+        return transform.parent.GetComponent<ClientesManager>().HayHuecoEnBarra();
+    }
 }

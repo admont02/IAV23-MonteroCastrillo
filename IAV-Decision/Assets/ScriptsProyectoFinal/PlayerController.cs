@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     NavMeshAgent agent;
     Transform playerTransform;
-    [SerializeField]
-    GameObject listaClientes;
+   
+   public GameObject listaClientes;
     [SerializeField]
     MesasManager mM;
     [SerializeField]
@@ -193,4 +193,5 @@ public class PlayerController : MonoBehaviour
         else return;
         audioS.PlayOneShot(vasoSon);
     }
+   
 }
