@@ -33,7 +33,10 @@ Características principales:
 
 
 
-Los clientes funcionan mediante una máquina de estados, según la cual intercalan ir a la barra a pedir su bebida, esperar su bebida, ir a mesa y consumir su bebida. Aquí adjunto una imagen de la máquina implementada en el proyecto
+Los clientes funcionan mediante una máquina de estados, según la cual intercalan ir a la barra a pedir su bebida, esperar su bebida, ir a mesa y consumir su bebida. Aquí adjunto una imagen de la máquina implementada en el proyecto:
+
+![image](https://github.com/admont02/IAV23-MonteroCastrillo/assets/82326212/ba98332e-32c4-49c5-84d9-ebead8e575c4)
+
 
 Cada x segundos, irá entrando un nuevo cliente en el bar, siempre y cuando no se supere el máximo de clientela permitida (7). Lo primero que hará el cliente, lógicamente, será ir a la barra a pedir su bebida, a menos que haya demasiada gente esperando en la barra, entonces, el cliente se pondrá a bailar, una vez haya sitio para pedir, retomará la acción. 
 
@@ -46,7 +49,7 @@ Cuando le demos su bebida, el cliente irá a una mesa vacía a consumirla tranqu
 Una vez termine su tiempo de consumición , el cliente abandonará el local.
  
  ## Pruebas y métricas
- 
+ Falta únicamente la realización del vídeo de pruebas
  ## Referencias
 
 - Unity, Bolt Visual Scripting
