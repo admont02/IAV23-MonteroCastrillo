@@ -31,8 +31,14 @@ public class PlayerController : MonoBehaviour
     Cliente.Bebidas b;
     private Animator animator;
     private GameObject bebidaObjeto;
+
+    [SerializeField]
+    AudioClip limpia;
+
+    private AudioSource audioS;
     void Start()
     {
+        audioS= GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         playerTransform = transform;
@@ -77,6 +83,7 @@ public class PlayerController : MonoBehaviour
                 {
                     Destroy(mesa.transform.GetChild(j).gameObject);
                     Debug.Log("Mesa limpia");
+                    audioS.PlayOneShot(limpia);
                 }
 
             }
