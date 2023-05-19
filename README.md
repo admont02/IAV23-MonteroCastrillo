@@ -14,7 +14,7 @@ Características principales:
 
 - Clientes IA basados en máquinas de estado: Los clientes del bar están impulsados por IA creada utilizando Bolt, lo que les permite exhibir comportamientos realistas y reacciones a tus acciones como camarero.
 
-- Variabilidad y desafío: Cada cliente tiene diferentes preferencias, estados de ánimo y niveles de paciencia. Debes adaptarte rápidamente y satisfacer sus necesidades para mantenerlos felices y obtener una buena calificación.
+- Variabilidad y desafío: Cada cliente tiene diferentes preferencias. Debes adaptarte rápidamente y satisfacer sus necesidades para mantenerlos felices.
  
  
  ## Diseño de la solución
