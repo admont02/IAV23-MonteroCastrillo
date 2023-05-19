@@ -39,9 +39,13 @@ public class Cliente : MonoBehaviour
 
     // Objetivos de su itinerario
     public Transform Puerta;
+    public Transform BaileZone;
+
     public Transform Barra;
     private GameObject barraGO;
     private GameObject puertaGO;
+    private GameObject baileGO;
+
 
 
 
@@ -79,10 +83,13 @@ public class Cliente : MonoBehaviour
     {
         audioS = GetComponent<AudioSource>();
         barraGO = GameObject.FindWithTag("Barra");
+        baileGO = GameObject.FindWithTag("Baile");
+
         puertaGO = GameObject.FindWithTag("Puerta");
 
         Barra = barraGO.transform;
         Puerta = puertaGO.transform;
+        BaileZone = baileGO.transform;
         agente = GetComponent<NavMeshAgent>();
         nivelAlegria = 100;
         BebidaDeseada();
@@ -120,7 +127,7 @@ public class Cliente : MonoBehaviour
         esperando = true;
     }
 
-    // Comprueba si tiene que dejar de descansar
+   
     public bool TerminaEsperarEnBarra()
     {
         NavMeshHit hit;
@@ -139,6 +146,32 @@ public class Cliente : MonoBehaviour
                if( nivelAlegria <= 30)
                 {
                     esperando = false;
+                    return true;
+                }
+            }
+        }
+
+        // Si no se cumple la condición, se retorna false
+        return false;
+    }
+    public bool TerminaEsperarBebida()
+    {
+        NavMeshHit hit;
+        if (NavMesh.SamplePosition(transform.position, out hit, 2f, NavMesh.AllAreas))
+        {
+            if ((1 << hit.mask & NavMesh.GetAreaFromName("Barra")) != 0)
+            {
+                //double tiempoTranscurrido = Time.time - tiempoComienzoDescanso;
+                if (!enfadandoseProgramado)
+                {
+                    Invoke("Enfadandose", 3f);
+                    enfadandoseProgramado = true;
+                }
+                //return tiempoTranscurrido >= tiempoDeDescanso;
+
+                if (nivelAlegria <= 30)
+                {
+                    esperandoBebida = false;
                     return true;
                 }
             }
