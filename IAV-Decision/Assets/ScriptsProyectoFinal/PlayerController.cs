@@ -79,13 +79,14 @@ public class PlayerController : MonoBehaviour
             float distancia = Vector3.Distance(transform.position, mesa.position);
 
             // Comprobar si la distancia es menor que una cierta cantidad
-            if (distancia <= 2.0f && mesa.GetComponent<Mesa>().IsSucia())
+            if (distancia <= 1.0f && mesa.GetComponent<Mesa>().IsSucia())
             {
                 for (int j = 0; j < mesa.transform.childCount; j++)
                 {
                     Destroy(mesa.transform.GetChild(j).gameObject);
                     Debug.Log("Mesa limpia");
                     audioS.PlayOneShot(limpia);
+                    break;
                 }
 
             }
@@ -106,6 +107,7 @@ public class PlayerController : MonoBehaviour
                 hijo.GetComponent<Cliente>().setAtencion();
                 break;
             }
+
 
         }
     }

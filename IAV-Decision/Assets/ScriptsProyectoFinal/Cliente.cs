@@ -106,7 +106,7 @@ public class Cliente : MonoBehaviour
 
     public void LateUpdate()
     {
-        if (agente.velocity.sqrMagnitude > Mathf.Epsilon && !enMesa)
+        if (agente.velocity.sqrMagnitude > Mathf.Epsilon && !enMesa && !esperando && !esperandoBebida)
             transform.rotation = Quaternion.LookRotation(agente.velocity.normalized);
 
 
@@ -150,7 +150,7 @@ public class Cliente : MonoBehaviour
     public void Enfadandose()
     {
         Debug.Log("cheee");
-        nivelAlegria -= 5;
+        nivelAlegria -=5;
         enfadandoseProgramado = false;
     }
 
@@ -196,7 +196,10 @@ public class Cliente : MonoBehaviour
     {
         if (51 >= nivelAlegria)
         {
-            esperando=false;
+            if(vaso.gameObject != null)
+                Destroy(vaso.gameObject);
+
+            esperando =false;
             esperandoBebida=false;
             miMesa.libre = true;
             return true;
@@ -255,8 +258,8 @@ public class Cliente : MonoBehaviour
 
             if (miMesa.GetComponent<Mesa>().IsSucia())
             {
-                Debug.Log("Mesa suciaaaaaaaaaaa");
-                nivelAlegria -= 10;
+                Debug.Log("Mesa suciaaaaaaaaaaa"+nivelAlegria);
+                nivelAlegria -= 20;
             }
         }
 
