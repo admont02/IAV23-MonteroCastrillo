@@ -21,15 +21,15 @@ Características principales:
  
  En el proyecto dispongo de las siguientes clases:
 
-- PlayerController: Clase para el manejo del jugador (camarero), se moverá mediante NavMesh con las teclas ‘W’, ‘A’, S,D y podrá interactuar con los clientes/objetos con la tecla ‘E’
+- PlayerController: Clase para el manejo del jugador (camarero), se moverá mediante NavMesh con las teclas ‘W’, ‘A’, 'S','D' y podrá interactuar con los clientes/bebidas/mesas con la tecla ‘E’, cogiendo bebidas, hablando/dando bebidas a los clientes y limpiando las mesas pertinentes.
 
-- Cliente:
+- Cliente: Clase para el manejo de los clientes, booleanos y métodos para el control de la máquina de estados
 
-- ClientesManager:
+- ClientesManager: Se encarga de generar los clientes
 
-- Mesa: 
+- Mesa: Clase que tienen las mesas del bar para comprobar si están ocupadas y/o sucias.
 
-- Mesas Manager:
+- Mesas Manager: Sirve para saber si hay alguna mesa vacía y obtenerla, para poder enviar ahí a un cliente
 
 
 
