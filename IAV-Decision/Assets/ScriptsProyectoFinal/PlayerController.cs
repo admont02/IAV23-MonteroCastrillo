@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
@@ -34,7 +35,8 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     AudioClip limpia;
-
+    [SerializeField]
+    AudioClip vasoSon;
     private AudioSource audioS;
     void Start()
     {
@@ -180,5 +182,7 @@ public class PlayerController : MonoBehaviour
             b = Cliente.Bebidas.WHISKEY;
             bebidaEnMano = true;
         }
+        else return;
+        audioS.PlayOneShot(vasoSon);
     }
 }

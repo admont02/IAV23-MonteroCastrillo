@@ -167,7 +167,6 @@ MonoBehaviour:
   tiempoDeConsumo: 45
   Puerta: {fileID: 6449544910757699809, guid: 85eee53f10729144ebc95cdcbd621140, type: 3}
   Barra: {fileID: 3071293828171001318, guid: e41300ba1b4c45e4b8acc9e3016aa7b9, type: 3}
-  bb: {fileID: 0}
   icono: {fileID: 900542405138132393}
   sprites:
   - {fileID: 21300000, guid: 09b4faf65c2a6b648832f2bfb6d4e4f5, type: 3}
@@ -176,6 +175,7 @@ MonoBehaviour:
   nivelAlegria: 0
   correcto: {fileID: 8300000, guid: bb0102f51458fda408c0f5f7e08e3fef, type: 3}
   incorrecto: {fileID: 8300000, guid: c5797a8bb10197b46b244efaa438822a, type: 3}
+  atendido: {fileID: 8300000, guid: d80f96e027a4293498991426e9c07e18, type: 3}
 --- !u!114 &900542403738461619
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -63,6 +63,8 @@ public class Cliente : MonoBehaviour
     AudioClip correcto;
     [SerializeField]
     AudioClip incorrecto;
+    [SerializeField]
+    AudioClip atendido;
 
     private GameObject vaso;
 
@@ -196,7 +198,7 @@ public class Cliente : MonoBehaviour
         esperando = false;
         esperandoBebida = true;
         icono.SetActive(true);
-
+        audioS.PlayOneShot(atendido);
         Invoke("DesactivarIcono", 3f);
     }
 

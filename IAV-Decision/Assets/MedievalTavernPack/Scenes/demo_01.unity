@@ -2398,6 +2398,7 @@ MonoBehaviour:
   PrefabVino: {fileID: 1265123572}
   PrefabWhiskey: {fileID: 1573554750913364}
   limpia: {fileID: 8300000, guid: 1368cb883b8f9eb49964151807f56ac0, type: 3}
+  vasoSon: {fileID: 8300000, guid: e2d9d265de15fd44e8a2a81ab691f7cf, type: 3}
 --- !u!195 &511405448
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -4739,6 +4740,7 @@ MonoBehaviour:
   PrefabVino: {fileID: 1265123572}
   PrefabWhiskey: {fileID: 1573554750913364}
   limpia: {fileID: 0}
+  vasoSon: {fileID: 0}
 --- !u!1001 &897263904
 PrefabInstance:
   m_ObjectHideFlags: 0
