@@ -220,7 +220,7 @@ public class Cliente : MonoBehaviour
         }
         else
         {
-            nivelAlegria -= 50;
+            nivelAlegria -= 20;
             Debug.Log("nooooooooooooooooooooo  " + nivelAlegria);
             audioS.PlayOneShot(incorrecto);
 
@@ -234,7 +234,11 @@ public class Cliente : MonoBehaviour
         enMesa = true;
         agente.SetDestination(dest);
         tiempoComienzoConsumo = 0;
-       
 
+        if (miMesa.GetComponent<Mesa>().IsSucia())
+        {
+            Debug.Log("Mesa suciaaaaaaaaaaa");
+            nivelAlegria -= 10;
+        }
     }
 }

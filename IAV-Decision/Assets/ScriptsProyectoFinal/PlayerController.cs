@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
@@ -52,14 +53,36 @@ public class PlayerController : MonoBehaviour
         {
             InteraccionConClientes();
             CogerBebidaDeEstanteria();
+            LimpiarMesa();
 
         }
 
         if (Input.GetKeyDown(KeyCode.F))
             MandarClienteAMesa();
 
-        
+
     }
+
+    private void LimpiarMesa()
+    {
+        for (int i = 0; i < mM.transform.childCount; i++)
+        {
+            Transform mesa = mM.transform.GetChild(i);
+            float distancia = Vector3.Distance(transform.position, mesa.position);
+
+            // Comprobar si la distancia es menor que una cierta cantidad
+            if (distancia <= 2.0f && mesa.GetComponent<Mesa>().IsSucia())
+            {
+                for (int j = 0; j < mesa.transform.childCount; j++)
+                {
+                    Destroy(mesa.transform.GetChild(j).gameObject);
+                    Debug.Log("Mesa limpia");
+                }
+
+            }
+        }
+    }
+
     private void InteraccionConClientes()
     {
         for (int i = 0; i < listaClientes.transform.childCount; i++)
@@ -97,7 +120,7 @@ public class PlayerController : MonoBehaviour
                     posi.y = mesa.transform.position.y;
                     posi.z = mesa.transform.position.z;
                     hijo.GetComponent<Cliente>().miMesa = mesa;
-                    hijo.GetComponent<Cliente>().MandarAMesa(posi, b,bebidaObjeto);
+                    hijo.GetComponent<Cliente>().MandarAMesa(posi, b, bebidaObjeto);
                     bebidaEnMano = false;
                     break;
                 }
