@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     private AudioSource audioS;
     void Start()
     {
-        audioS= GetComponent<AudioSource>();
+        audioS = GetComponent<AudioSource>();
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         playerTransform = transform;
@@ -121,15 +121,23 @@ public class PlayerController : MonoBehaviour
             // Comprobar si la distancia es menor que una cierta cantidad
             if (distancia <= 2.0f && hijo.GetComponent<Cliente>().esperandoBebida)
             {
+                Vector3 posi = new Vector3(0,0,0);
                 if (mM.hayMesaVacia())
                 {
+
                     Mesa mesa = mM.GetMesaVacia();
-                    Vector3 posi;
+
                     posi.x = mesa.transform.position.x + 1;
                     posi.y = mesa.transform.position.y;
                     posi.z = mesa.transform.position.z;
                     hijo.GetComponent<Cliente>().miMesa = mesa;
-                    hijo.GetComponent<Cliente>().MandarAMesa(posi, b, bebidaObjeto);
+                    hijo.GetComponent<Cliente>().MandarAMesa(posi, b, bebidaObjeto, true);
+                    bebidaEnMano = false;
+                    break;
+                }
+                else
+                {
+                    hijo.GetComponent<Cliente>().MandarAMesa(posi, b, bebidaObjeto, false);
                     bebidaEnMano = false;
                     break;
                 }

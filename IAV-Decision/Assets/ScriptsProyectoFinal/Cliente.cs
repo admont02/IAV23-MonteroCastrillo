@@ -44,7 +44,7 @@ public class Cliente : MonoBehaviour
     private GameObject puertaGO;
 
 
-  
+
 
     //para seguir al fantasma o al vizconde
     public GameObject icono;
@@ -166,14 +166,22 @@ public class Cliente : MonoBehaviour
             if (tiempoTranscurrido >= tiempoDeConsumo) // Si ha transcurrido el tiempo objetivo
             {
                 tiempoComienzoConsumo = 0f; // Reiniciar el tiempo de inicio del consumo para futuras llamadas
-                vaso.transform.SetParent(miMesa.transform);
-                Vector3 posi;
-                posi.x = 0f;
-                posi.y = 0.72f;
-                posi.z = 0f;
-                vaso.transform.localPosition = posi;
-                miMesa.libre = true;
-                
+                if (miMesa)
+                {
+                    vaso.transform.SetParent(miMesa.transform);
+                    Vector3 posi;
+                    posi.x = 0f;
+                    posi.y = 0.72f;
+                    posi.z = 0f;
+                    vaso.transform.localPosition = posi;
+                    miMesa.libre = true;
+                }
+                else
+                {
+                    Destroy(vaso.gameObject);
+                }
+
+
                 return true;
             }
         }
@@ -182,9 +190,9 @@ public class Cliente : MonoBehaviour
     }
     public bool MeMarcho()
     {
-        if (51 >= nivelAlegria) 
-        { 
-            
+        if (51 >= nivelAlegria)
+        {
+
             miMesa.libre = true;
             return true;
         }
@@ -207,7 +215,7 @@ public class Cliente : MonoBehaviour
         icono.SetActive(false);
     }
 
-    public void MandarAMesa(Vector3 dest, Bebidas entregada, GameObject mivaso)
+    public void MandarAMesa(Vector3 dest, Bebidas entregada, GameObject mivaso, bool aMesa)
     {
         Vector3 posi;
         posi.x = -0.5f;
@@ -234,13 +242,18 @@ public class Cliente : MonoBehaviour
         Debug.Log("MandarAMesa metodo");
         esperandoBebida = false;
         enMesa = true;
-        agente.SetDestination(dest);
         tiempoComienzoConsumo = 0;
-
-        if (miMesa.GetComponent<Mesa>().IsSucia())
+        if (enMesa && miMesa)
         {
-            Debug.Log("Mesa suciaaaaaaaaaaa");
-            nivelAlegria -= 10;
+            agente.SetDestination(dest);
+
+
+            if (miMesa.GetComponent<Mesa>().IsSucia())
+            {
+                Debug.Log("Mesa suciaaaaaaaaaaa");
+                nivelAlegria -= 10;
+            }
         }
+
     }
 }
