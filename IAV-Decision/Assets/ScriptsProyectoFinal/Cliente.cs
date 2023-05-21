@@ -9,35 +9,28 @@ using static UnityEngine.GraphicsBuffer;
 public class Cliente : MonoBehaviour
 {
 
-    // Segundos que esta descanasando
     public double tiempoDeDescanso;
-    // Segundo en el que comezo a descansar
+
     private double tiempoComienzoDescanso;
-    // Si esta capturada
 
 
-    // Segundos que puede estar merodeando
     public double tiempoDeEsperaBebida;
-    // Segundo en el que comezo a merodear
+
     public double tiempoComienzoEsperarBebida = 0;
-    // Distancia de merodeo
-    public int distanciaDeMerodeo = 16;
-    // Si canta o no
+
+
     public bool esperando = false;
     public bool esperandoBebida = false;
     public bool enMesa = false;
     public Mesa miMesa = null;
     public double tiempoDeConsumo;
-    // Segundo en el que comezo a descansar
+
     private double tiempoComienzoConsumo = 0;
-
-
 
 
     // Componente cacheado NavMeshAgent
     private NavMeshAgent agente;
 
-    // Objetivos de su itinerario
     public Transform Puerta;
     public Transform BaileZone;
 
@@ -50,7 +43,7 @@ public class Cliente : MonoBehaviour
 
 
 
-    //para seguir al fantasma o al vizconde
+
     public GameObject icono;
 
     //sprites 
@@ -95,6 +88,7 @@ public class Cliente : MonoBehaviour
         BebidaDeseada();
 
     }
+    //Random de la bebida que quiere el cliente
     private void BebidaDeseada()
     {
 
@@ -106,7 +100,6 @@ public class Cliente : MonoBehaviour
     }
     public void Start()
     {
-        //agente.updateRotation = false;
         agente.stoppingDistance = .25f;
 
     }
@@ -119,7 +112,7 @@ public class Cliente : MonoBehaviour
 
     }
 
-
+    //Ir a la barra
     public void IrABarra()
     {
         agente.SetDestination(Barra.position);
@@ -127,7 +120,7 @@ public class Cliente : MonoBehaviour
         esperando = true;
     }
 
-   
+    //Método para comprobar si está cansado de esperar a ser atendido
     public bool TerminaEsperarEnBarra()
     {
         NavMeshHit hit;
@@ -143,7 +136,7 @@ public class Cliente : MonoBehaviour
                 }
                 //return tiempoTranscurrido >= tiempoDeDescanso;
 
-               if( nivelAlegria <= 30)
+                if (nivelAlegria <= 30)
                 {
                     esperando = false;
                     return true;
@@ -154,6 +147,7 @@ public class Cliente : MonoBehaviour
         // Si no se cumple la condición, se retorna false
         return false;
     }
+    //Método para comprobar si está cansado de esperar la bebida
     public bool TerminaEsperarBebida()
     {
         NavMeshHit hit;
@@ -180,14 +174,15 @@ public class Cliente : MonoBehaviour
         // Si no se cumple la condición, se retorna false
         return false;
     }
+    //Metodo para restar alegria al estar esperando
     public void Enfadandose()
     {
         Debug.Log("cheee");
-        nivelAlegria -=5;
+        nivelAlegria -= 5;
         enfadandoseProgramado = false;
     }
 
-
+    //Cliente termina de consumir
     public bool TerminaConsumir()
     {
 
@@ -203,6 +198,7 @@ public class Cliente : MonoBehaviour
             if (tiempoTranscurrido >= tiempoDeConsumo) // Si ha transcurrido el tiempo objetivo
             {
                 tiempoComienzoConsumo = 0f; // Reiniciar el tiempo de inicio del consumo para futuras llamadas
+                //si estoy en una mesa
                 if (miMesa)
                 {
                     vaso.transform.SetParent(miMesa.transform);
@@ -225,15 +221,16 @@ public class Cliente : MonoBehaviour
 
         return false; // Si no se cumple la condición, devuelve false
     }
+    //Cliente se marcha enfadado
     public bool MeMarcho()
     {
         if (51 >= nivelAlegria)
         {
-            if(vaso.gameObject != null)
+            if (vaso.gameObject != null)
                 Destroy(vaso.gameObject);
 
-            esperando =false;
-            esperandoBebida=false;
+            esperando = false;
+            esperandoBebida = false;
             miMesa.libre = true;
             return true;
         }
@@ -241,7 +238,7 @@ public class Cliente : MonoBehaviour
 
         return false;
     }
-
+    //Cliente atendido
     public void setAtencion()
     {
         esperando = false;
@@ -250,29 +247,30 @@ public class Cliente : MonoBehaviour
         audioS.PlayOneShot(atendido);
         Invoke("DesactivarIcono", 3f);
     }
-
+    //Desactivar icono de la cabeza
     private void DesactivarIcono()
     {
         icono.SetActive(false);
     }
-
+    //Cliente recibe bebida
     public void MandarAMesa(Vector3 dest, Bebidas entregada, GameObject mivaso, bool aMesa)
     {
         Vector3 posi;
         posi.x = -0.5f;
         posi.y = 0.1f;
         posi.z = 0.7f;
+        //bebida deseada
         if (bebida == entregada)
         {
             nivelAlegria += 15;
-            Debug.Log("LO QUE QUERIA");
+
             audioS.PlayOneShot(correcto);
 
         }
         else
         {
             nivelAlegria -= 20;
-            Debug.Log("nooooooooooooooooooooo  " + nivelAlegria);
+
             audioS.PlayOneShot(incorrecto);
 
 
@@ -280,23 +278,25 @@ public class Cliente : MonoBehaviour
         vaso = mivaso;
         vaso.transform.SetParent(transform);
         vaso.transform.localPosition = posi;
-        Debug.Log("MandarAMesa metodo");
+
         esperandoBebida = false;
         enMesa = true;
         tiempoComienzoConsumo = 0;
+        //si estoy en una mesa
         if (enMesa && miMesa)
         {
             agente.SetDestination(dest);
 
-
+            //mesa sucia
             if (miMesa.GetComponent<Mesa>().IsSucia())
             {
-                Debug.Log("Mesa suciaaaaaaaaaaa"+nivelAlegria);
+
                 nivelAlegria -= 20;
             }
         }
 
     }
+    //Comprobacion de si hay hueco en la barra
     public bool HuecoBarra()
     {
         return transform.parent.GetComponent<ClientesManager>().HayHuecoEnBarra();

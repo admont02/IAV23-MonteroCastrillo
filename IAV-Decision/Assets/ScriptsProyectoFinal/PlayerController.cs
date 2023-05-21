@@ -8,8 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     NavMeshAgent agent;
     Transform playerTransform;
-   
-   public GameObject listaClientes;
+
+    public GameObject listaClientes;
     [SerializeField]
     MesasManager mM;
     [SerializeField]
@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
 
     }
-
+    //Limpiar la mesa
     private void LimpiarMesa()
     {
         for (int i = 0; i < mM.transform.childCount; i++)
@@ -78,11 +78,12 @@ public class PlayerController : MonoBehaviour
             Transform mesa = mM.transform.GetChild(i);
             float distancia = Vector3.Distance(transform.position, mesa.position);
 
-            // Comprobar si la distancia es menor que una cierta cantidad
+            // Comprobar si esta sucia
             if (distancia <= 1.5f && mesa.GetComponent<Mesa>().IsSucia())
             {
                 for (int j = 0; j < mesa.transform.childCount; j++)
                 {
+                    //borramos vasos de la mesa
                     Destroy(mesa.transform.GetChild(j).gameObject);
                     Debug.Log("Mesa limpia");
                     audioS.PlayOneShot(limpia);
@@ -92,7 +93,7 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
+    //Atender al cliente
     private void InteraccionConClientes()
     {
         Transform clienteMasCercano = null;
@@ -117,7 +118,7 @@ public class PlayerController : MonoBehaviour
             clienteMasCercano.GetComponent<Cliente>().setAtencion();
         }
     }
-
+    //Se le da la bebida al cliente
     private void MandarClienteAMesa()
     {
         if (!bebidaEnMano) return;
@@ -142,7 +143,7 @@ public class PlayerController : MonoBehaviour
         if (clienteMasCercano != null)
         {
             Debug.Log("Interactuando con el cliente más cercano.");
-
+            //si hay una mesa libre
             if (mM.hayMesaVacia())
             {
                 Mesa mesa = mM.GetMesaVacia();
@@ -163,8 +164,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-
-
+    //Coger una bebida de las estanterias
     private void CogerBebidaDeEstanteria()
     {
         if (bebidaEnMano) return;
@@ -210,5 +210,5 @@ public class PlayerController : MonoBehaviour
         else return;
         audioS.PlayOneShot(vasoSon);
     }
-   
+
 }

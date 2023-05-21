@@ -17,8 +17,7 @@ public class ClientesManager : MonoBehaviour
     void Update()
     {
         temporizador += Time.deltaTime;
-        //Debug.Log(temporizador);
-        // Debug.Log(temporizador);
+      
         if (temporizador >= intervaloCreacion && listaClientes.childCount<maxCli)
         {
            
@@ -26,16 +25,16 @@ public class ClientesManager : MonoBehaviour
             temporizador = 0f;
         }
     }
-
+    //Creación de clientes
     void CrearCliente()
     {
         // Lógica para crear un nuevo cliente
         GameObject cliente = Instantiate(clientePrefab, transform.position, transform.rotation);
         cliente.transform.SetParent(listaClientes);
         Debug.Log("Nuevo cliente");
-        // Asignar propiedades aleatorias al cliente
-       // cliente.GetComponent<Cliente>().AsignarPropiedadesAleatorias();
+       
     }
+    //Obtener clientes en la barra
     public int GetClientesBarra()
     {
         int cont = 0;
@@ -47,6 +46,7 @@ public class ClientesManager : MonoBehaviour
         }
         return cont;
     }
+    //HUeco en barra
     public bool HayHuecoEnBarra()
     {
         return GetClientesBarra() < maxCliBarra;
