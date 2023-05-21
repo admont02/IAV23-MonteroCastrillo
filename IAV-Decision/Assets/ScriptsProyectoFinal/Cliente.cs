@@ -177,7 +177,7 @@ public class Cliente : MonoBehaviour
     //Metodo para restar alegria al estar esperando
     public void Enfadandose()
     {
-        Debug.Log("cheee");
+       
         nivelAlegria -= 5;
         enfadandoseProgramado = false;
     }
