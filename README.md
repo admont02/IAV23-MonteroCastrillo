@@ -49,7 +49,7 @@ Cuando le demos su bebida, el cliente irá a una mesa vacía a consumirla tranqu
 Una vez termine su tiempo de consumición , el cliente abandonará el local.
  
  ## Pruebas y métricas
- Falta únicamente la realización del vídeo de pruebas
+https://youtu.be/UFwAk5nB_zE
  ## Referencias
 
 - Unity, Bolt Visual Scripting
