@@ -33,7 +33,7 @@ Características principales:
 
 
 
-Los clientes funcionan mediante una máquina de estados, según la cual intercalan ir a la barra a pedir su bebida, esperar su bebida, ir a mesa y consumir su bebida. Aquí adjunto una imagen de la máquina implementada en el proyecto:
+Los clientes funcionan mediante una máquina de estados, según la cual intercalan bailar, ir a la barra a pedir su bebida, esperar su bebida, ir a mesa y consumir su bebida. Aquí adjunto una imagen de la máquina implementada en el proyecto:
 
 ![image](https://github.com/admont02/IAV23-MonteroCastrillo/assets/82326212/ba98332e-32c4-49c5-84d9-ebead8e575c4)
 
